@@ -1,0 +1,170 @@
+/* ═══════════════════════════════════════════════════════════════
+   HAZEL LABS — responsive.css
+   Mobile-first breakpoints · Fluid layouts · Adaptive typography
+═══════════════════════════════════════════════════════════════ */
+
+/* ─── TABLET (≤ 1024px) ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root { --s8: 96px; }
+
+  section { padding: var(--s8) 40px; }
+  nav { padding: 0 32px; }
+
+  .nav-links { gap: 20px; }
+  .nav-links li:nth-child(n+4) { display: none; } /* hide extra items */
+
+  .problem-grid { gap: 48px; }
+  .piml-grid    { gap: 48px; }
+  .contact-grid { gap: 48px; }
+
+  .team-grid  { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+  .methods-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  .hero-metrics { display: grid; grid-template-columns: repeat(3, 1fr); position: static; margin-top: 64px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .hero-metric  { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .hero-metric:nth-child(3n) { border-right: none; }
+
+  #hero { padding-bottom: 80px; min-height: auto; padding-top: 120px; }
+}
+
+/* ─── MEDIUM (≤ 860px) ────────────────────────────────────── */
+@media (max-width: 860px) {
+  :root { --s8: 80px; }
+
+  section { padding: var(--s8) 28px; }
+  nav { padding: 0 24px; }
+
+  /* Hide desktop nav links & show hamburger */
+  .nav-links     { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-cta       { display: none; }
+
+  .hero-headline { font-size: clamp(34px, 7vw, 52px); }
+  .hero-sub      { font-size: 15px; max-width: 100%; }
+  #hero          { padding: 100px 28px 80px; }
+
+  .hero-metrics {
+    display: flex; flex-direction: column;
+    position: static; margin-top: 48px;
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  }
+  .hero-metric { border-right: none; border-bottom: 1px solid var(--border); }
+  .hero-metric:last-child { border-bottom: none; }
+
+  .problem-grid  { grid-template-columns: 1fr; gap: 40px; }
+  .problem-visual { height: 320px; }
+
+  .piml-grid      { grid-template-columns: 1fr; gap: 40px; }
+  .piml-visual    { height: 380px; }
+
+  .impact-grid    { grid-template-columns: 1fr; gap: 14px; }
+
+  .contact-grid   { grid-template-columns: 1fr; gap: 40px; }
+
+  .clients-grid   { grid-template-columns: 1fr; }
+
+  .diff-grid      { grid-template-columns: 1fr 1fr; }
+  .diff-item::after { display: none; }
+
+  .team-grid      { grid-template-columns: repeat(2, 1fr); }
+
+  .cta-actions    { flex-direction: column; align-items: center; }
+
+  .footer-inner   { flex-direction: column; gap: 20px; text-align: center; }
+  .footer-links   { flex-wrap: wrap; justify-content: center; }
+
+  #network-canvas { height: 400px; }
+
+  .form-grid-2 { grid-template-columns: 1fr; }
+
+  .methods-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── MOBILE (≤ 560px) ────────────────────────────────────── */
+@media (max-width: 560px) {
+  :root { --s8: 64px; }
+
+  section { padding: var(--s8) 20px; }
+  nav     { padding: 0 20px; }
+
+  .hero-headline { font-size: clamp(30px, 8vw, 44px); }
+  #hero { padding: 90px 20px 64px; }
+  .hero-sub { font-size: 14px; margin-bottom: 32px; }
+  .hero-actions { flex-direction: column; width: 100%; gap: 10px; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+
+  .hero-metric-val { font-size: 22px; }
+  .hero-metric-label { font-size: 9px; }
+
+  .section-title { font-size: clamp(24px, 7vw, 38px); }
+
+  .problem-visual { height: 260px; }
+  .piml-visual    { height: 300px; }
+  #network-canvas { height: 340px; }
+
+  .diff-grid      { grid-template-columns: 1fr; }
+  .team-grid      { grid-template-columns: repeat(2, 1fr); }
+
+  .contact-grid   { gap: 32px; }
+
+  .impact-num     { font-size: 40px; }
+
+  .phys-hero      { padding: 24px 20px; }
+  .phys-hero-text { font-size: 18px; }
+
+  .callout { padding: 20px 22px; }
+  .callout p { font-size: 13px; }
+
+  footer { padding: 32px 20px; }
+}
+
+/* ─── ULTRAWIDE (≥ 1600px) ────────────────────────────────── */
+@media (min-width: 1600px) {
+  section { padding: var(--s8) 80px; }
+  nav     { padding: 0 80px; }
+  footer  { padding: 48px 80px; }
+}
+
+/* ─── SAFE: prevent overflow in any width ─────────────────── */
+* { min-width: 0; }
+
+/* Ensure canvas elements resize correctly */
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+canvas.fixed-height {
+  height: inherit !important;
+}
+
+/* Prevent text overflow on narrow containers */
+.hero-metric-val,
+.hero-metric-label,
+.section-label,
+.comp-label,
+.diff-index,
+.team-role,
+.client-example {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Fix comparison grid on narrow desktop */
+@media (max-width: 1100px) {
+  .methods-grid { grid-template-columns: 1fr; gap: 14px; }
+  .method-card .method-body { padding: 16px 20px 20px; }
+}
+
+/* Ensure convergence chart is always responsive */
+.convergence-canvas-wrap canvas {
+  width: 100% !important;
+  height: 260px !important;
+}
+
+/* Stack hero metrics on very narrow */
+@media (max-width: 400px) {
+  .hero-metrics { display: flex; flex-direction: column; }
+  .hero-metric  { border-right: none; border-bottom: 1px solid var(--border); }
+  .hero-metric:last-child { border-bottom: none; }
+}

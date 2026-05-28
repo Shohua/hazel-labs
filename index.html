@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hazel Labs — Physics-Informed Machine Learning para Materiales de Construcción</title>
+  <meta name="description" content="Hazel Labs aplica Physics-Informed Machine Learning al diseño inverso de materiales de construcción, comprimiendo años de I+D en semanas.">
+  <meta name="theme-color" content="#050709">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,200;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════ -->
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo" aria-label="Hazel Labs">
+    
+    <span class="nav-logo-text">HAZEL <em>LABS</em></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#problem"  id="nav-problem">El Problema</a></li>
+    <li><a href="#piml"     id="nav-piml">PIML</a></li>
+    <li><a href="#impact"   id="nav-impact">Impacto</a></li>
+    <li><a href="#network"  id="nav-network">Red de Validación</a></li>
+    <li><a href="#clients"  id="nav-clients">Clientes</a></li>
+    <li><a href="#team"     id="nav-team">Equipo</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="lang-toggle" role="group" aria-label="Idioma">
+      <button class="lang-btn active" id="lang-es" onclick="setLang('es')">ES</button>
+      <button class="lang-btn"        id="lang-en" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="#contact" class="nav-cta" id="nav-cta-btn">Contactar</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<nav class="nav-mobile" id="nav-mobile" aria-label="Menú móvil">
+  <a href="#problem" id="">El Problema</a>
+  <a href="#piml">PIML</a>
+  <a href="#impact">Impacto</a>
+  <a href="#network">Red de Validación</a>
+  <a href="#clients">Clientes</a>
+  <a href="#team">Equipo</a>
+  <a href="#contact" class="nav-cta" style="margin-top:12px;text-align:center;border-radius:8px;">Contactar</a>
+</nav>
+
+<!-- ════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section id="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="glow-bg" style="width:600px;height:600px;background:var(--blue);top:-200px;right:-80px;" aria-hidden="true"></div>
+  <div class="glow-bg" style="width:380px;height:380px;background:var(--cyan);bottom:100px;left:-100px;" aria-hidden="true"></div>
+
+  <div class="hero-badge">
+    <span class="hero-badge-dot" aria-hidden="true"></span>
+    <span id="hero-badge-text">Physics-Informed Machine Learning · Materiales de Construcción</span>
+  </div>
+
+  <h1 class="hero-headline">
+    <span id="hero-line1">Del ensayo y error</span><br>
+    <em id="hero-line2">a la formulación óptima.</em><br>
+    <strong id="hero-line3">Diseño inverso de materiales de construcción.</strong>
+  </h1>
+
+  <p class="hero-sub" id="hero-sub">
+    Hazel Labs comprime años de I+D en materiales de construcción en semanas, mediante Physics-Informed Machine Learning. Partimos de las propiedades que necesitas y encontramos la formulación óptima.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary" id="hero-cta1">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1L13 7M13 7L7 13M13 7H1" stroke="currentColor" stroke-width="1.2"/></svg>
+      <span id="hero-cta1-text">Solicitar Demo</span>
+    </a>
+    <a href="#piml" class="btn-secondary" id="hero-cta2">
+      <span id="hero-cta2-text">Ver la Tecnología</span>
+    </a>
+  </div>
+
+  <div class="hero-metrics" role="list" aria-label="Métricas clave">
+    <div class="hero-metric" role="listitem">
+      <div class="hero-metric-val"><span id="m1">50 </span>%</div>
+      <div class="hero-metric-label" id="ml1">REDUCCIÓN TIEMPO I+D</div>
+    </div>
+    <div class="hero-metric" role="listitem">
+      <div class="hero-metric-val"><span id="m2">30 </span>%</div>
+      <div class="hero-metric-label" id="ml2">MENOS COSTO DESARROLLO</div>
+    </div>
+    <div class="hero-metric" role="listitem">
+      <div class="hero-metric-val"><span>40 </span>%</div>
+      <div class="hero-metric-label" id="ml3">MENOS DATOS QUE ML PURO</div>
+    </div>
+    <div class="hero-metric" role="listitem">
+      <div class="hero-metric-val">USD <span>5.04</span></div>
+      <div class="hero-metric-label" id="ml4">AHORRO POR M³ HORMIGÓN</div>
+    </div>
+    <div class="hero-metric" role="listitem">
+      <div class="hero-metric-val">USD <span>410</span><span style="font-size:14px">M</span></div>
+      <div class="hero-metric-label" id="ml5">MERCADO GLOBAL IA 2030</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     01 — PROBLEM
+════════════════════════════════════════════════ -->
+<section id="problem">
+  <div class="section-inner">
+    <div class="section-label" id="prob-label">01 — El Problema</div>
+    <h2 class="section-title reveal" id="prob-title">La industria desarrolla materiales<br><em>como hace 30 años.</em></h2>
+    <p class="section-body reveal reveal-delay-1" id="prob-body">Ensayo. Error. Validación tardía. Ciclos de semanas que se convierten en años. El proceso lineal de I+D en materiales de construcción tiene cuellos de botella estructurales que ningún consulting tradicional puede resolver.</p>
+
+    <div class="problem-grid">
+      <!-- Process steps -->
+      <div class="problem-stages reveal reveal-delay-2">
+        <div class="stage-item">
+          <div class="stage-line" aria-hidden="true"></div>
+          <div class="stage-num" aria-hidden="true">01</div>
+          <div class="stage-content">
+            <strong id="s1t">Formulación empírica inicial</strong>
+            <p id="s1d">Se propone una mezcla de forma artesanal</p>
+          </div>
+        </div>
+        <div class="stage-item">
+          <div class="stage-line" aria-hidden="true"></div>
+          <div class="stage-num" aria-hidden="true">02</div>
+          <div class="stage-content">
+            <strong id="s2t">Fabricación de probetas</strong>
+            <p id="s2d">Laboratorio: tiempo, costo, material</p>
+          </div>
+        </div>
+        <div class="stage-item">
+          <div class="stage-line" aria-hidden="true"></div>
+          <div class="stage-num" aria-hidden="true">03</div>
+          <div class="stage-content">
+            <strong id="s3t">Ensayos térmicos, mecánicos y químicos</strong>
+            <p id="s3d">NCh146, NCh853, ASTM C-518 y otros</p>
+          </div>
+        </div>
+        <div class="stage-item bottleneck">
+          <div class="stage-line" aria-hidden="true"></div>
+          <div class="stage-num" aria-hidden="true">04</div>
+          <div class="stage-content">
+            <strong id="s4t">Corrección manual de formulación</strong>
+            <p id="s4d">Ciclo iterativo sin convergencia garantizada</p>
+          </div>
+        </div>
+        <div class="stage-item last">
+          <div class="stage-num" aria-hidden="true">05</div>
+          <div class="stage-content">
+            <strong id="s5t">Repetir hasta industrialización</strong>
+            <p id="s5d">Meses por validación → años por producto</p>
+          </div>
+        </div>
+        <div class="stage-result" id="stage-result">
+          ⚠ Semanas × iteración → meses × validación → 2+ años × producto
+        </div>
+      </div>
+
+      <!-- Convergence visualization -->
+      <div class="problem-visual reveal reveal-delay-3" aria-label="Visualización de convergencia">
+        <canvas id="problem-canvas" class="fixed-height" aria-hidden="true"></canvas>
+      </div>
+    </div>
+
+    <div class="callout reveal reveal-delay-4">
+      <p id="prob-quote">"Hazeladd demoró aproximadamente 2 años desarrollando un aditivo EPS reciclado para yeso-cartón. Hazel Labs nace exactamente para que ningún fabricante tenga que pasar por esto."</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     02 — COMPARISON
+════════════════════════════════════════════════ -->
+<section id="timeline-comparison">
+  <div class="section-inner">
+    <div class="section-label" id="comp-label">02 — Por Qué el Modelo Actual Falla</div>
+    <h2 class="section-title reveal" id="comp-title">Tres enfoques.<br><em>Una sola respuesta correcta.</em></h2>
+    <p class="section-body reveal reveal-delay-1" id="comp-body">Una comparación que va más allá del tiempo: hablamos de garantías físicas, adaptación local y resultados desde el primer ensayo.</p>
+
+    <div class="comparison-wrapper reveal reveal-delay-2">
+
+      <!-- Three method cards -->
+      <div class="methods-grid">
+
+        <!-- Traditional -->
+        <div class="method-card">
+          <div class="method-header">
+            <div class="method-label trad" id="meth-trad-label">MÉTODO TRADICIONAL</div>
+            <div class="method-name" id="meth-trad-name">Ensayo y Error Empírico</div>
+          </div>
+          <div class="method-body">
+            <div class="method-row">
+              <span class="method-row-key">Tiempo I+D</span>
+              <span class="method-row-val bad">1–2+ años</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Ciclos</span>
+              <span class="method-row-val bad">100+ iteraciones</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Datos</span>
+              <span class="method-row-val warn">Alta cantidad</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Física</span>
+              <span class="method-row-val warn">No garantizada</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Costo</span>
+              <span class="method-row-val bad">Muy alto</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ML Tradicional -->
+        <div class="method-card">
+          <div class="method-header">
+            <div class="method-label ml" id="meth-ml-label">ML TRADICIONAL</div>
+            <div class="method-name" id="meth-ml-name">Machine Learning de datos puros</div>
+          </div>
+          <div class="method-body">
+            <div class="method-row">
+              <span class="method-row-key">Tiempo I+D</span>
+              <span class="method-row-val warn">Meses</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Ciclos</span>
+              <span class="method-row-val warn">10–50 iter.</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Datos</span>
+              <span class="method-row-val bad">Dataset masivo</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Física</span>
+              <span class="method-row-val warn">No garantizada</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Costo</span>
+              <span class="method-row-val warn">Moderado</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PIML Hazel Labs -->
+        <div class="method-card" style="border-color:rgba(79,201,232,0.25);">
+          <div class="method-header" style="border-color:rgba(79,201,232,0.15);">
+            <div class="method-label piml" id="meth-piml-label">PIML HAZEL LABS</div>
+            <div class="method-name" id="meth-piml-name">Physics-Informed ML <em>— Hazel Labs</em></div>
+          </div>
+          <div class="method-body">
+            <div class="method-row">
+              <span class="method-row-key">Tiempo I+D</span>
+              <span class="method-row-val good">Semanas</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Ciclos</span>
+              <span class="method-row-val good">Filtro + 1 validación</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Datos</span>
+              <span class="method-row-val good">40% menos</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Física</span>
+              <span class="method-row-val good">Garantizada ✓</span>
+            </div>
+            <div class="method-row">
+              <span class="method-row-key">Costo</span>
+              <span class="method-row-val good">Bajo</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /methods-grid -->
+
+      <!-- Physical guarantee hero -->
+      <div class="phys-hero reveal reveal-delay-3">
+        <div class="phys-hero-label" id="phys-hero-label">DIFERENCIADOR ABSOLUTO</div>
+        <div class="phys-hero-text" id="phys-hero-text">
+          Solo predice resultados <strong>físicamente posibles</strong>
+        </div>
+        <p class="phys-hero-sub" id="phys-hero-sub">
+          Las leyes de la termodinámica actúan como filtro. El modelo no puede proponer una formulación que viole la física, eliminando el 80% de iteraciones inútiles.
+        </p>
+      </div>
+
+      <!-- Convergence chart -->
+      <div class="convergence-canvas-wrap reveal reveal-delay-4">
+        <div class="canvas-header">
+          <span class="canvas-header-title" id="conv-title">CONVERGENCIA COMPARATIVA — iteraciones hasta solución válida</span>
+          <div class="canvas-legend">
+            <div class="canvas-legend-item">
+              <span class="canvas-legend-dot" style="background:var(--amber)"></span>
+              <span id="conv-trad">Método Tradicional</span>
+            </div>
+            <div class="canvas-legend-item">
+              <span class="canvas-legend-dot" style="background:var(--blue)"></span>
+              <span id="conv-ml">ML Tradicional</span>
+            </div>
+            <div class="canvas-legend-item">
+              <span class="canvas-legend-dot" style="background:var(--cyan)"></span>
+              <span id="conv-piml">PIML Hazel Labs</span>
+            </div>
+          </div>
+        </div>
+        <canvas id="convergence-canvas" class="fixed-height" aria-hidden="true" aria-label="Gráfico de convergencia comparativa"></canvas>
+      </div>
+
+    </div><!-- /comparison-wrapper -->
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     03 — PIML TECHNOLOGY
+════════════════════════════════════════════════ -->
+<section id="piml">
+  <div class="glow-bg" style="width:500px;height:500px;background:var(--cyan);top:50%;right:-80px;transform:translateY(-50%);" aria-hidden="true"></div>
+  <div class="section-inner">
+    <div class="section-label" id="piml-label">03 — La Tecnología</div>
+    <h2 class="section-title reveal" id="piml-title">Physics-Informed<br><em>Machine Learning.</em></h2>
+    <p class="section-body reveal reveal-delay-1" id="piml-sub">No es IA genérica. PIML integra leyes físicas directamente en la red neuronal, garantizando que cada predicción sea termodinámicamente posible.</p>
+
+    <div class="piml-grid">
+      <div class="piml-visual reveal reveal-delay-2" aria-label="Red neuronal PIML">
+        <canvas id="piml-canvas" class="piml-canvas-inner fixed-height" aria-hidden="true"></canvas>
+      </div>
+
+      <div class="piml-features">
+        <div class="piml-feature reveal reveal-delay-2">
+          <div class="piml-feature-icon" id="pf1-icon">FÍSICA INTEGRADA</div>
+          <div class="piml-feature-title" id="pf1t">Leyes físicas en el modelo</div>
+          <div class="piml-feature-desc" id="pf1d">Integra transferencia de calor, hidratación y mecánica directamente como restricciones de la red neuronal. El modelo no puede proponer algo que viole la termodinámica.</div>
+        </div>
+        <div class="piml-feature reveal reveal-delay-3">
+          <div class="piml-feature-icon" id="pf2-icon">DISEÑO INVERSO</div>
+          <div class="piml-feature-title" id="pf2t">De la propiedad a la fórmula</div>
+          <div class="piml-feature-desc" id="pf2d">No iteras desde una fórmula empírica. Partes de las propiedades requeridas —térmica, mecánica, acústica— y el modelo busca hacia atrás en el espacio de millones de formulaciones posibles.</div>
+        </div>
+        <div class="piml-feature reveal reveal-delay-4">
+          <div class="piml-feature-icon" id="pf3-icon">CONTEXTO LOCAL</div>
+          <div class="piml-feature-title" id="pf3t">Parametrizable por región</div>
+          <div class="piml-feature-desc" id="pf3d">Cada región de Chile tiene áridos, puzolanas y residuos con propiedades distintas. El modelo aprende del contexto geográfico específico del cliente, una ventaja que ninguna plataforma global puede replicar.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     04 — TRIPLE IMPACT
+════════════════════════════════════════════════ -->
+<section id="impact">
+  <div class="section-inner">
+    <div class="section-label" id="imp-label">04 — Triple Impacto Cuantificable</div>
+    <h2 class="section-title reveal" id="imp-title">Impacto medible en<br><em>tres dimensiones.</em></h2>
+
+    <div class="impact-grid">
+      <div class="impact-card economic reveal reveal-delay-1">
+        <div class="impact-num"><span class="counter" data-target="50">0</span>%</div>
+        <div class="impact-title" id="imp1t">Impacto Económico</div>
+        <div class="impact-desc" id="imp1d">Reducción potencial del tiempo de I+D. Menos iteraciones, menos desperdicio experimental, menor CAPEX por reformulación fallida.</div>
+        <div class="impact-metrics">
+          <div class="impact-metric-row">
+            <span class="impact-metric-key">Mercado IA materiales 2030</span>
+            <span class="impact-metric-val">USD 410M</span>
+          </div>
+          <div class="impact-metric-row">
+            <span class="impact-metric-key" id="imp1m2k">Ahorro por m³ hormigón</span>
+            <span class="impact-metric-val">USD 5.04</span>
+          </div>
+          <div class="impact-metric-row">
+            <span class="impact-metric-key" id="imp1m3k">Reducción costo I+D</span>
+            <span class="impact-metric-val">~30%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="impact-card environmental reveal reveal-delay-2">
+        <div class="impact-num"><span class="counter" data-target="30">0</span>%</div>
+        <div class="impact-title" id="imp2t">Impacto Ambiental</div>
+        <div class="impact-desc" id="imp2d">Reducción potencial de emisiones en formulación de hormigón. Optimización de clinker, puzolanas locales y residuos industriales regionales.</div>
+        <div class="impact-metrics">
+          <div class="impact-metric-row">
+            <span class="impact-metric-key" id="imp2m1k">Reducción factor clinker</span>
+            <span class="impact-metric-val">Inmediata</span>
+          </div>
+          <div class="impact-metric-row">
+            <span class="impact-metric-key" id="imp2m2k">Emisiones globales cemento</span>
+            <span class="impact-metric-val">~7% CO₂</span>
+          </div>
+          <div class="impact-metric-row">
+            <span class="impact-metric-key" id="imp2m3k">Carbono incorporado edificio</span>
+            <span class="impact-metric-val">~40%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="impact-card social reveal reveal-delay-3">
+        <div class="impact-num">3<span style="font-size:26px">×</span></div>
+        <div class="impact-title" id="imp3t">Impacto Social</div>
+        <div class="impact-desc" id="imp3d">Democratización del I+D: fabricantes medianos y regionales acceden a formulación avanzada sin grandes estructuras internas. Valorización de residuos locales y vivienda más eficiente.</div>
+        <div class="impact-metrics">
+          <div class="impact-metric-row">
+            <span class="impact-metric-key" id="imp3m1k">Acceso equitativo I+D</span>
+            <span class="impact-metric-val">Fab. medianos</span>
+          </div>
+          <div class="impact-metric-row">
+            <span class="impact-metric-key" id="imp3m2k">Desarrollo regional</span>
+            <span class="impact-metric-val">Economía circular</span>
+          </div>
+          <div class="impact-metric-row">
+            <span class="impact-metric-key" id="imp3m3k">Vivienda eficiente</span>
+            <span class="impact-metric-val">Confort habitacional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout reveal reveal-delay-4" style="margin-top:48px;">
+      <p id="imp-quote">"La descarbonización de la construcción no ocurrirá solo en la operación de los edificios, sino en la formulación de sus materiales."</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     05 — VALIDATION NETWORK
+════════════════════════════════════════════════ -->
+<section id="network">
+  <div class="section-inner">
+    <div class="section-label" id="net-label">05 — Red de Validación</div>
+    <h2 class="section-title reveal" id="net-title">Red de Validación<br><em>Física en Chile.</em></h2>
+    <p class="section-body reveal reveal-delay-1" id="net-sub">No ofrecemos solo predicción computacional. Ofrecemos validación real en laboratorio chileno, con convenios activos con las principales instituciones de I+D del país.</p>
+
+    <div class="network-canvas-wrap reveal reveal-delay-2">
+      <canvas id="network-canvas" aria-label="Red de partners y validación de Hazel Labs"></canvas>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     06 — CLIENTS
+════════════════════════════════════════════════ -->
+<section id="clients">
+  <div class="section-inner">
+    <div class="section-label" id="cl-label">06 — Segmentos de Clientes</div>
+    <h2 class="section-title reveal" id="cl-title">Industrias que<br><em>ya nos necesitan.</em></h2>
+
+    <div class="clients-grid">
+      <div class="client-card reveal reveal-delay-1">
+        <div class="client-urgency very-high"><span aria-hidden="true">●</span> <span id="clurg1">URGENCIA MUY ALTA</span></div>
+        <div class="client-title" id="clti1">Cementeras comprometidas Net Zero</div>
+        <div class="client-example">Cbb · Melón · Polpaico Soluciones</div>
+        <div class="client-pain" id="clpa1">Compromisos firmados de carbono neutralidad al 2050. Hoja de Ruta Net Zero Chile 2050. Presión regulatoria activa y acceso a capital verde condicionado a métricas ESG.</div>
+        <div class="client-offer" id="clof1">Optimización de mezclas con materiales suplementarios locales. Reducción de factor clinker. Formulaciones que cumplen metas Net Zero.</div>
+      </div>
+
+      <div class="client-card reveal reveal-delay-2">
+        <div class="client-urgency very-high"><span aria-hidden="true">●</span> <span id="clurg2">URGENCIA ALTA</span></div>
+        <div class="client-title" id="clti2">Fabricantes de materiales intermedios</div>
+        <div class="client-example">Knauf Chile · Saint-Gobain / Gyplac</div>
+        <div class="client-pain" id="clpa2">Mayor exigencia térmica regulatoria (OGUC creciente). Rezagados por soluciones integrales. Sin infraestructura digital para I+D de formulación.</div>
+        <div class="client-offer" id="clof2">Formulación térmica optimizada para sus productos sin modificar la línea industrial existente. Compatible con proceso actual del cliente.</div>
+      </div>
+
+      <div class="client-card reveal reveal-delay-3">
+        <div class="client-urgency high"><span aria-hidden="true">●</span> <span id="clurg3">URGENCIA ALTA</span></div>
+        <div class="client-title" id="clti3">Plantas de hormigón premezclado</div>
+        <div class="client-example" id="clex3">Plantas regionales y nacionales</div>
+        <div class="client-pain" id="clpa3">Variabilidad de áridos por zona geográfica. Fórmulas estáticas que fallan o generan sobreconsumo. Impacto directo en costo y margen por m³.</div>
+        <div class="client-offer" id="clof3">Dosificación adaptativa en tiempo real por región. Reducción de costo por m³ y huella de carbono en ciclos cortos.</div>
+      </div>
+
+      <div class="client-card reveal reveal-delay-4">
+        <div class="client-urgency medium"><span aria-hidden="true">●</span> <span id="clurg4">URGENCIA MEDIA-ALTA</span></div>
+        <div class="client-title" id="clti4">Fabricantes con enfoque I+D</div>
+        <div class="client-example" id="clex4">Medianos y especializados · Chile y LATAM</div>
+        <div class="client-pain" id="clpa4">Nula estructura especializada en I+D en Chile. Sin acceso a formulación avanzada. Dependen de ensayo y error o consultorías externas sin garantías.</div>
+        <div class="client-offer" id="clof4">Formulación de materiales y prototipado integral, adaptado a línea industrial y escalabilidad. Co-desarrollo o fee por formulación.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     07 — DIFFERENTIATORS
+════════════════════════════════════════════════ -->
+<section id="diff">
+  <div class="section-inner">
+    <div class="section-label" id="di-label">07 — Diferenciadores</div>
+    <h2 class="section-title reveal" id="di-title">Lo que ninguna alternativa<br><em>global puede replicar.</em></h2>
+
+    <div class="diff-grid reveal reveal-delay-1">
+      <div class="diff-item">
+        <div class="diff-index">01</div>
+        <div class="diff-title" id="di1t">Especialización en construcción chilena</div>
+        <div class="diff-desc" id="di1d">Conocimiento profundo de normativa nacional (NCh), tipologías constructivas locales y especificaciones del mercado chileno. Una ventaja irreplicable desde el exterior.</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-index">02</div>
+        <div class="diff-title" id="di2t">Áridos y residuos locales</div>
+        <div class="diff-desc" id="di2d">Formulación que incorpora residuos industriales y áridos de cada región. Ninguna plataforma global puede replicar esta ventaja sin presencia territorial activa.</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-index">03</div>
+        <div class="diff-title" id="di3t">Red de validación física activa</div>
+        <div class="diff-desc" id="di3d">Convenios activos con DICTUC, IDIEM, INN y Startup Lab 01. Predicción computacional + validación real en laboratorio chileno. El ciclo completo.</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-index">04</div>
+        <div class="diff-title" id="di4t">Compatibilidad industrial total</div>
+        <div class="diff-desc" id="di4d">Compatible con el proceso industrial existente del cliente. No requiere inversión en CAPEX ni rediseño de planta. Integración sin fricción.</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-index">05</div>
+        <div class="diff-title" id="di5t">Primer mover en PIML Chile</div>
+        <div class="diff-desc" id="di5d">No existe en Chile ningún actor especializado en Physics-Informed ML para materiales de construcción. Ventaja de primer entrante con datos y aprendizaje local acumulados.</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-index">06</div>
+        <div class="diff-title" id="di6t">Dolor propio validado</div>
+        <div class="diff-desc" id="di6d">Hazel Labs nació de 2 años de I+D real en aditivo EPS para yeso-cartón. Conocemos el problema desde adentro. No vendemos teoría, vendemos experiencia transformada en tecnología.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     08 — TEAM
+════════════════════════════════════════════════ -->
+<section id="team">
+  <div class="section-inner">
+    <div class="section-label" id="te-label">08 — Equipo</div>
+    <h2 class="section-title reveal" id="te-title">El equipo detrás<br><em>de Hazel Labs.</em></h2>
+
+    <div class="team-grid">
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar" aria-hidden="true">SH</div>
+        <div class="team-name">Shohua Muñoz</div>
+        <div class="team-role-label">CEO</div>
+        <div class="team-role">Ingeniero Civil</div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar" aria-hidden="true">MV</div>
+        <div class="team-name">Marco Villegas</div>
+        <div class="team-role-label">CTO</div>
+        <div class="team-role">MSc. Ing. Química</div>
+      </div>
+      <div class="team-card reveal reveal-delay-3">
+        <div class="team-avatar" aria-hidden="true">MC</div>
+        <div class="team-name">Melanie Carroza</div>
+        <div class="team-role-label">BD LEAD</div>
+        <div class="team-role">Business Development</div>
+      </div>
+      <div class="team-card reveal reveal-delay-4">
+        <div class="team-avatar" aria-hidden="true">CS</div>
+        <div class="team-name">Carla Soto</div>
+        <div class="team-role-label">R&amp;D</div>
+        <div class="team-role">Research Associate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     CTA
+════════════════════════════════════════════════ -->
+<section id="cta">
+  <div class="glow-bg" style="width:500px;height:500px;background:var(--blue);top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.09;" aria-hidden="true"></div>
+  <div class="section-inner">
+    <div class="cta-inner">
+      <h2 class="cta-title reveal" id="cta-title">
+        Deja de iterar.<br>
+        <em>Empieza a diseñar.</em>
+      </h2>
+      <p class="cta-sub reveal reveal-delay-1" id="cta-sub">
+        Hazel Labs acelera la transición climática de la industria de materiales mediante diseño inverso y física computacional. Estamos disponibles para proyectos piloto, co-desarrollo I+D y demostraciones técnicas.
+      </p>
+      <div class="cta-actions reveal reveal-delay-2">
+        <a href="#contact" class="btn-primary" id="cta-btn1">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1L13 7M13 7L7 13M13 7H1" stroke="currentColor" stroke-width="1.2"/></svg>
+          <span id="cta-btn1-text">Hablar con el equipo</span>
+        </a>
+        <a href="#piml" class="btn-secondary" id="cta-btn2">
+          <span id="cta-btn2-text">Ver la tecnología PIML</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     09 — CONTACT
+════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label" id="con-label">09 — Contacto</div>
+    <h2 class="section-title reveal" id="con-title">Trabajemos<br><em>juntos.</em></h2>
+
+    <div class="contact-grid">
+      <!-- Form -->
+      <div class="contact-form reveal reveal-delay-1" role="form" aria-label="Formulario de contacto">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="fi-name" id="fl-name">NOMBRE</label>
+            <input type="text" id="fi-name" name="name" placeholder="Tu nombre" autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="fi-company" id="fl-company">EMPRESA</label>
+            <input type="text" id="fi-company" name="company" placeholder="Tu empresa" autocomplete="organization">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fi-email" id="fl-email">EMAIL</label>
+          <input type="email" id="fi-email" name="email" placeholder="correo@empresa.cl" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="fi-type" id="fl-type">TIPO DE ORGANIZACIÓN</label>
+          <select id="fi-type" name="type">
+            <option value="" id="fo-select">Seleccionar...</option>
+            <option id="fo-cement">Cementera / Materiales</option>
+            <option id="fo-concrete">Planta Hormigón</option>
+            <option id="fo-rd">Institución I+D</option>
+            <option id="fo-investor">Inversionista / Fondo</option>
+            <option id="fo-other">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fi-msg" id="fl-msg">MENSAJE</label>
+          <textarea id="fi-msg" name="message" rows="4" placeholder="Cuéntanos tu desafío de formulación..."></textarea>
+        </div>
+        <button class="btn-primary" onclick="handleContact()" type="button" id="con-btn" style="width:fit-content;">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1L13 7M13 7L7 13M13 7H1" stroke="currentColor" stroke-width="1.2"/></svg>
+          <span id="con-btn-text">Enviar mensaje</span>
+        </button>
+        <div id="contact-success" class="contact-success" role="alert" aria-live="polite"></div>
+      </div>
+
+      <!-- Info -->
+      <div class="contact-info reveal reveal-delay-2">
+        <div class="contact-info-item">
+          <div class="contact-info-label">UBICACIÓN</div>
+          <div class="contact-info-val">Av. Manquehue Sur #520, Las Condes, Santiago, Chile</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-label">SPIN-OFF DE</div>
+          <div class="contact-info-val">
+            <a href="https://hazeladd.cl" target="_blank">Hazeladd · Innovación en Materiales · ADITIVO TÉRMICO — λ 0.075 W/m·K</a> 
+          </div>
+        </div>
+
+        <!-- Partner ecosystem (updated) -->
+        <div class="partners-ecosystem">
+          <div class="partners-ecosystem-label" id="ci-partner-label">PARTNERS DE VALIDACIÓN</div>
+          <div class="partner-chips">
+            <span class="partner-chip tier1">DICTUC</span>
+            <span class="partner-chip tier1">IDIEM</span>
+            <span class="partner-chip tier1">INN</span>
+            <span class="partner-chip tier1">Startup Lab 01</span>
+            <span class="partner-chip">CChC</span>
+            <span class="partner-chip">SOVIQUIM</span>
+            <span class="partner-chip">NCh146</span>
+            <span class="partner-chip">NCh853</span>
+            <span class="partner-chip">ASTM C-518</span>
+          </div>
+        </div>
+
+        <div class="contact-quote">
+          <p id="cq-text">"Chile tiene diversidad geográfica y mineral única, pero no posee infraestructura digital para transformar esa diversidad en innovación material."</p>
+          <cite id="cq-cite">— Hazel Labs · Propuesta Estratégica 2026</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">HAZEL <em>LABS</em> — Physics-Informed ML · Materiales de Construcción</div>
+    <ul class="footer-links">
+      <li><a href="#problem" id="fl1">El Problema</a></li>
+      <li><a href="#piml"    id="fl2">Tecnología</a></li>
+      <li><a href="#impact"  id="fl3">Impacto</a></li>
+      <li><a href="#contact" id="fl4">Contacto</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Hazel Labs. Spin-off de Hazeladd.</div>
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════
+     SCRIPTS — order matters
+════════════════════════════════════════════════ -->
+<script src="scripts/i18n.js"></script>
+<script src="scripts/main.js"></script>
+<script src="scripts/animations.js"></script>
+<script src="scripts/network.js"></script>
+
+</body>
+</html>
